@@ -1,0 +1,31 @@
+#######################################
+# Syntax Coloring Map for 107-Arduino-TSL2550
+#######################################
+
+#######################################
+# Class (KEYWORD1)
+#######################################
+
+ArduinoTSL2550	KEYWORD1
+TSL2550	KEYWORD1
+TSL2550_Io	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+angle_raw	KEYWORD2
+read	KEYWORD2
+write	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+TSL2550_ClearErrorFlag	LITERAL1
+TSL2550_ProgrammingControl	LITERAL1
+TSL2550_OTP_RegisterZeroPosition_HIGH	LITERAL1
+TSL2550_OTP_RegisterZeroPosition_LOW	LITERAL1
+TSL2550_Diagnostics_AutomaticGainControl	LITERAL1
+TSL2550_Magnitude	LITERAL1
+TSL2550_Angle	LITERAL1
