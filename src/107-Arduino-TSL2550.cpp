@@ -76,12 +76,14 @@ float ArduinoTSL2550::get_lux()
   {
     r=(float)adc_1_count/((float)(adc_0_count-adc_1_count));
     light_level=(float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
-
-//    Serial.print("R = ");
-//    Serial.println(r);
   }
 
   return light_level;
+}
+
+void ArduinoTSL2550::powerdown()
+{
+  _io.write(TSL2550::Register::TSL2550_PowerDownState);
 }
 
 TSL2550::Error ArduinoTSL2550::error()

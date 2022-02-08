@@ -14,18 +14,16 @@ TSL2550_Io	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-angle_raw	KEYWORD2
-read	KEYWORD2
-write	KEYWORD2
+get_lux	KEYWORD2
+powerdown	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
 
-TSL2550_ClearErrorFlag	LITERAL1
-TSL2550_ProgrammingControl	LITERAL1
-TSL2550_OTP_RegisterZeroPosition_HIGH	LITERAL1
-TSL2550_OTP_RegisterZeroPosition_LOW	LITERAL1
-TSL2550_Diagnostics_AutomaticGainControl	LITERAL1
-TSL2550_Magnitude	LITERAL1
-TSL2550_Angle	LITERAL1
+TSL2550_PowerDownState	LITERAL1
+TSL2550_ReadCommandRegister	LITERAL1
+TSL2550_WriteCommandExtendedRange	LITERAL1
+TSL2550_WriteCommandStandardRange	LITERAL1
+TSL2550_ReadADCChannel0	LITERAL1
+TSL2550_ReadADCChannel1	LITERAL1
