@@ -31,6 +31,7 @@ public:
 
   bool begin(bool const use_extended);
   float get_lux();
+  void powerdown();
 
   TSL2550::Error error();
 

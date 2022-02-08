@@ -66,34 +66,27 @@ float ArduinoTSL2550::get_lux()
   adc_0_chord=(adc_0&0xf0)>>4;;
   adc_0_step=adc_0&0x0f;
   adc_0_count=((33*((1<<adc_0_chord)-1))>>1)+(adc_0_step*(1<<adc_0_chord));
-//  Serial.print("ADC channel 0:  ");
-//  Serial.println(adc_0_count);
-  
+
   adc_1=adc_1&0x7f; // remove valid bit
   adc_1_chord=(adc_1&0xf0)>>4;;
   adc_1_step=adc_1&0x0f;
   adc_1_count=((33*((1<<adc_1_chord)-1))>>1)+(adc_1_step*(1<<adc_1_chord));
-//  Serial.print("ADC channel 1:  ");
-//  Serial.println( adc_1_count);
-  
+
   if((adc_0_count-adc_1_count)!=0)
   {
     r=(float)adc_1_count/((float)(adc_0_count-adc_1_count));
     light_level=(float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
-  
-//    Serial.print("R = ");
-//    Serial.println(r);
-//    Serial.print("Light level = ");
-//    Serial.print(light_level);
-//    Serial.println(" lux");
   }
 
   return light_level;
+}
+
+void ArduinoTSL2550::powerdown()
+{
+  _io.write(TSL2550::Register::TSL2550_PowerDownState);
 }
 
 TSL2550::Error ArduinoTSL2550::error()
 {
   return _error;
 }
-
-
