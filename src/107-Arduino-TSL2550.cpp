@@ -69,15 +69,15 @@ float ArduinoTSL2550::get_lux()
   int const adc_1_step  = (adc_1 & 0x0F);
   int const adc_1_count = ((33*((1<<adc_1_chord)-1))>>1)+(adc_1_step*(1<<adc_1_chord));
 
-  float light_level = 0.0f;
+  float light_level_lux = 0.0f;
 
   if ((adc_0_count - adc_1_count) !=0 )
   {
-    float const r= (float)adc_1_count/((float)(adc_0_count-adc_1_count));
-    light_level = (float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
+    float const r = (float)adc_1_count/((float)(adc_0_count-adc_1_count));
+    light_level_lux = (float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
   }
 
-  return light_level;
+  return light_level_lux;
 }
 
 void ArduinoTSL2550::powerdown()

@@ -54,6 +54,7 @@ private:
   I2cWriteFunc _write;
   I2cReadFunc _read;
   uint8_t const _i2c_slave_addr;
+
 };
 
 /**************************************************************************************
