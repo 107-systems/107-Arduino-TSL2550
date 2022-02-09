@@ -21,9 +21,9 @@ powerdown	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
-TSL2550_PowerDownState	LITERAL1
-TSL2550_ReadCommandRegister	LITERAL1
-TSL2550_WriteCommandExtendedRange	LITERAL1
-TSL2550_WriteCommandStandardRange	LITERAL1
-TSL2550_ReadADCChannel0	LITERAL1
-TSL2550_ReadADCChannel1	LITERAL1
+PowerDownState	LITERAL1
+ReadCommandRegister	LITERAL1
+WriteCommandExtendedRange	LITERAL1
+WriteCommandStandardRange	LITERAL1
+ReadADCChannel0	LITERAL1
+ReadADCChannel1	LITERAL1

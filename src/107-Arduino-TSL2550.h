@@ -13,7 +13,6 @@
  **************************************************************************************/
 
 #include "TSL2550/TSL2550_Io.h"
-#include "Arduino.h"
 
 /**************************************************************************************
  * CLASS DECLARATION
@@ -26,7 +25,6 @@ public:
 
   ArduinoTSL2550(TSL2550::I2cWriteFunc write,
                  TSL2550::I2cReadFunc read,
- //                TSL2550::DelayFunc delay,
                  uint8_t const i2c_slave_addr);
 
   bool begin(bool const use_extended);

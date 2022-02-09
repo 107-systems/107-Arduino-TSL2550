@@ -23,7 +23,6 @@ void i2c_generic_read (uint8_t const i2c_slave_addr, uint8_t const reg_addr, uin
 
 ArduinoTSL2550 tsl2550(i2c_generic_write,
                        i2c_generic_read,
-//                       delay,
                        TSL2550::DEFAULT_I2C_ADDR);
 
 /**************************************************************************************
@@ -42,7 +41,7 @@ void setup()
   if (!tsl2550.begin(true))
   {
     Serial.print("ArduinoTSL2550::begin(...) failed, error code ");
-    Serial.print((int)tsl2550.error());
+    Serial.print(static_cast<int>(tsl2550.error()));
     for(;;) { }
   }
 
@@ -51,7 +50,7 @@ void setup()
 
 void loop()
 {
-  float light_level=tsl2550.get_lux();
+  float const light_level = tsl2550.get_lux();
   Serial.print("Light level = ");
   Serial.print(light_level);
   Serial.println(" lux");
