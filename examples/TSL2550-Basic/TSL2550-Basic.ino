@@ -41,7 +41,7 @@ void setup()
   if (!tsl2550.begin(true))
   {
     Serial.print("ArduinoTSL2550::begin(...) failed, error code ");
-    Serial.print((int)tsl2550.error());
+    Serial.print(static_cast<int>(tsl2550.error()));
     for(;;) { }
   }
 
@@ -50,7 +50,7 @@ void setup()
 
 void loop()
 {
-  float light_level=tsl2550.get_lux();
+  float const light_level = tsl2550.get_lux();
   Serial.print("Light level = ");
   Serial.print(light_level);
   Serial.println(" lux");
