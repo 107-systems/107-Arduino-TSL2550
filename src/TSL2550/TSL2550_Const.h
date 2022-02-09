@@ -40,16 +40,14 @@ enum class Register : uint8_t
 enum class Error : int
 {
   None    =  0,
-  Timeout = -1,
-  ChipId  = -2,
-  Param   = -3,
+  ChipId  = -1,
 };
 
 /**************************************************************************************
  * CONSTANTS
  **************************************************************************************/
 
-static uint8_t constexpr ID_EXPECTED_ID = 0x03;
+static uint8_t constexpr ID_EXPECTED_ID   = 0x03;
 static uint8_t constexpr DEFAULT_I2C_ADDR = 0x39;
 
 /**************************************************************************************
