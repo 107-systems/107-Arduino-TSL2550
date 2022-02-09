@@ -38,15 +38,15 @@ bool ArduinoTSL2550::begin(bool const use_extended)
 {
   /* Check the CHIP ID if it matches the expected value.
    */
-  if (_io.read(TSL2550::Register::TSL2550_ReadCommandRegister) != TSL2550::ID_EXPECTED_ID) {
+  if (_io.read(TSL2550::Register::ReadCommandRegister) != TSL2550::ID_EXPECTED_ID) {
     _error = TSL2550::Error::ChipId;
     return false;
   }
 
   if (use_extended)
-    _io.write(TSL2550::Register::TSL2550_WriteCommandExtendedRange, 0);
+    _io.write(TSL2550::Register::WriteCommandExtendedRange, 0);
   else
-    _io.write(TSL2550::Register::TSL2550_WriteCommandStandardRange, 0);
+    _io.write(TSL2550::Register::WriteCommandStandardRange, 0);
 
   return true;
 }
@@ -54,8 +54,8 @@ bool ArduinoTSL2550::begin(bool const use_extended)
 
 float ArduinoTSL2550::get_lux()
 {
-  uint8_t adc_0 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel0);
-  uint8_t adc_1 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel1);
+  uint8_t adc_0 = _io.read(TSL2550::Register::ReadADCChannel0);
+  uint8_t adc_1 = _io.read(TSL2550::Register::ReadADCChannel1);
 
   adc_0                 = (adc_0 & 0x7F);  /* remove valid bit */
   int const adc_0_chord = (adc_0 & 0xF0) >> 4;
@@ -80,7 +80,7 @@ float ArduinoTSL2550::get_lux()
 
 void ArduinoTSL2550::powerdown()
 {
-  _io.write(TSL2550::Register::TSL2550_PowerDownState, 0);
+  _io.write(TSL2550::Register::PowerDownState, 0);
 }
 
 TSL2550::Error ArduinoTSL2550::error()
