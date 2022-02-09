@@ -41,12 +41,6 @@ uint8_t TSL2550_Io::read(Register const reg)
   return data;
 }
 
-void TSL2550_Io::write(Register const reg)
-{
-  uint8_t const val=0;
-  write(reg, &val, 0);
-}
-
 void TSL2550_Io::write(Register const reg, uint8_t const val)
 {
   write(reg, &val, 1);
@@ -60,23 +54,6 @@ void TSL2550_Io::read(Register const reg, uint8_t * buf, size_t const bytes)
 void TSL2550_Io::write(Register const reg, uint8_t const * buf, size_t const bytes)
 {
   _write(_i2c_slave_addr, to_integer(reg), buf, bytes);
-}
-
-void TSL2550_Io::modify(Register const reg, uint8_t const bitmask, uint8_t const val)
-{
-  uint8_t reg_val = read(reg);
-  reg_val &= ~(bitmask);
-  reg_val |= (val & bitmask);
-  write(reg, reg_val);
-}
-
-bool TSL2550_Io::isBitSet(Register const reg, uint8_t const bitpos)
-{
-  uint8_t const reg_val = read(reg);
-  if (reg_val & (1<<bitpos))
-    return true;
-  else
-    return false;
 }
 
 /**************************************************************************************
