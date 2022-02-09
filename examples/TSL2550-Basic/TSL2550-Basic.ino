@@ -23,7 +23,6 @@ void i2c_generic_read (uint8_t const i2c_slave_addr, uint8_t const reg_addr, uin
 
 ArduinoTSL2550 tsl2550(i2c_generic_write,
                        i2c_generic_read,
-//                       delay,
                        TSL2550::DEFAULT_I2C_ADDR);
 
 /**************************************************************************************

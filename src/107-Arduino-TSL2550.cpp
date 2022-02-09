@@ -23,7 +23,6 @@ using namespace TSL2550;
 
 ArduinoTSL2550::ArduinoTSL2550(TSL2550::I2cWriteFunc write,
                                TSL2550::I2cReadFunc read,
- //                              TSL2550::DelayFunc delay,
                                uint8_t const i2c_slave_addr)
 : _error{TSL2550::Error::None}
 , _io{write, read, i2c_slave_addr}
