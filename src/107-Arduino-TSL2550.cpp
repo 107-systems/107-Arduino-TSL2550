@@ -43,8 +43,10 @@ bool ArduinoTSL2550::begin(bool const use_extended)
     return false;
   }
 
-  if(use_extended == true) _io.write(TSL2550::Register::TSL2550_WriteCommandExtendedRange);
-  else _io.write(TSL2550::Register::TSL2550_WriteCommandStandardRange);
+  if (use_extended)
+    _io.write(TSL2550::Register::TSL2550_WriteCommandExtendedRange);
+  else
+    _io.write(TSL2550::Register::TSL2550_WriteCommandStandardRange);
 
   return true;
 }
@@ -52,29 +54,25 @@ bool ArduinoTSL2550::begin(bool const use_extended)
 
 float ArduinoTSL2550::get_lux()
 {
-// variables for TLS2550
-  uint8_t adc_0=0,adc_1=0;
-  int adc_0_chord=0, adc_0_step=0, adc_0_count=0;
-  int adc_1_chord=0, adc_1_step=0, adc_1_count=0;
-  float r=0, light_level=0;
+  uint8_t adc_0 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel0);
+  uint8_t adc_1 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel1);
 
-  adc_0 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel0);
-  adc_1 = _io.read(TSL2550::Register::TSL2550_ReadADCChannel1);
+  adc_0                 = (adc_0 & 0x7F);  /* remove valid bit */
+  int const adc_0_chord = (adc_0 & 0xF0) >> 4;
+  int const adc_0_step  = (adc_0 & 0x0F);
+  int const adc_0_count = ((33*((1<<adc_0_chord)-1))>>1)+(adc_0_step*(1<<adc_0_chord));
 
-  adc_0=adc_0&0x7f;  // remove valid bit
-  adc_0_chord=(adc_0&0xf0)>>4;;
-  adc_0_step=adc_0&0x0f;
-  adc_0_count=((33*((1<<adc_0_chord)-1))>>1)+(adc_0_step*(1<<adc_0_chord));
+  adc_1                 = (adc_1 & 0x7F); /* remove valid bit */
+  int const adc_1_chord = (adc_1 & 0xF0) >>4;
+  int const adc_1_step  = (adc_1 & 0x0F);
+  int const adc_1_count = ((33*((1<<adc_1_chord)-1))>>1)+(adc_1_step*(1<<adc_1_chord));
 
-  adc_1=adc_1&0x7f; // remove valid bit
-  adc_1_chord=(adc_1&0xf0)>>4;;
-  adc_1_step=adc_1&0x0f;
-  adc_1_count=((33*((1<<adc_1_chord)-1))>>1)+(adc_1_step*(1<<adc_1_chord));
+  float light_level = 0.0f;
 
-  if((adc_0_count-adc_1_count)!=0)
+  if ((adc_0_count - adc_1_count) !=0 )
   {
-    r=(float)adc_1_count/((float)(adc_0_count-adc_1_count));
-    light_level=(float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
+    float const r= (float)adc_1_count/((float)(adc_0_count-adc_1_count));
+    light_level = (float)(adc_0_count-adc_1_count)*5.0*0.39*exp(-0.181*r*r);
   }
 
   return light_level;
