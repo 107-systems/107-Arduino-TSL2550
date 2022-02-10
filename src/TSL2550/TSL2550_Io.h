@@ -43,6 +43,7 @@ public:
   TSL2550_Io(I2cWriteFunc write, I2cReadFunc read, uint8_t const i2c_slave_addr);
 
 
+  void    write(Register const reg);
   uint8_t read (Register const reg);
   void    write(Register const reg, uint8_t const val);
   void    read (Register const reg, uint8_t * buf, size_t const bytes);
