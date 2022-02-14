@@ -46,9 +46,9 @@ bool ArduinoTSL2550::begin(bool const use_extended)
   }
 
   if (use_extended)
-    _io.write(TSL2550::Register::WriteCommandExtendedRange, 0);
+    _io.write(TSL2550::Register::WriteCommandExtendedRange);
   else
-    _io.write(TSL2550::Register::WriteCommandStandardRange, 0);
+    _io.write(TSL2550::Register::WriteCommandStandardRange);
 
   return true;
 }
@@ -82,7 +82,7 @@ float ArduinoTSL2550::get_lux()
 
 void ArduinoTSL2550::powerdown()
 {
-  _io.write(TSL2550::Register::PowerDownState, 0);
+  _io.write(TSL2550::Register::PowerDownState);
 }
 
 TSL2550::Error ArduinoTSL2550::error()

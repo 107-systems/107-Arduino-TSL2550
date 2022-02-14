@@ -34,6 +34,12 @@ TSL2550_Io::TSL2550_Io(I2cWriteFunc write, I2cReadFunc read, uint8_t const i2c_s
  * PUBLIC MEMBER FUNCTIONS
  **************************************************************************************/
 
+void TSL2550_Io::write(Register const reg)
+{
+  uint8_t const val=0;
+  write(reg, &val, 0);
+}
+
 uint8_t TSL2550_Io::read(Register const reg)
 {
   uint8_t data = 0;
